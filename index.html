@@ -8,25 +8,20 @@
 
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/bower_components/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+    <script src="/bower_components/jquery-tmpl/jquery.tmpl.min.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/js/script.js"></script>
 </head>
 <body>
 <div class="container page-container">
-    <div class="page-center">
-        <div id="suggestions" class="char-container">
-            <div class="char"></div>
-            <div class="char"></div>
-            <div class="char"></div>
-            <div class="char"></div>
-        </div>
+    <div class="template char-template">
+        <li class="char">${char}</li>
+    </div>
 
-        <div id="answer" class="char-container">
-            <div class="char"></div>
-            <div class="char"></div>
-            <div class="char"></div>
-            <div class="char"></div>
-        </div>
+    <div class="page-center">
+        <ul id="suggestions" class="char-container"></ul>
+        <ul id="answers" class="char-container"></ul>
     </div>
 </div>
 </body>

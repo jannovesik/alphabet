@@ -8,18 +8,30 @@
     text-align: center; }
 
 .char-container {
-  margin-bottom: 5%; }
-
-.char {
-  display: inline-block;
-  width: 100px;
-  height: 100px;
+  display: block;
+  white-space: nowrap;
+  margin-bottom: 5%;
+  padding: 0;
   border: 1px solid #ccc;
-  margin-right: 1%; }
-  .char:last-child {
-    margin-right: 0; }
+  min-height: 100px;
+  font-size: 0; }
 
-#suggestions .char {
+.char, .placeholder {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  font-size: 4vw;
+  margin: 1%;
+  color: white;
+  text-transform: capitalize;
   background-color: #0070a3; }
+
+.placeholder {
+  display: inline;
+  border: 2px solid red; }
+
+.template {
+  display: none; }
 
 /*# sourceMappingURL=style.css.map */
