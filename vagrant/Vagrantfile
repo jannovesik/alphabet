@@ -1,0 +1,21 @@
+# vagrant box add precise32 http://files.vagrantup.com/precise32.box
+
+Vagrant.configure("2") do |config|
+
+  config.vm.define "alphabet" do |m|
+      m.vm.hostname = "alphabet"
+      m.vm.box = "hashicorp/precise32"
+      m.vm.synced_folder "../", "/home/vagrant/src"
+      m.vm.provision :shell, :path => "bootstrap.sh"
+
+      m.vm.provision :puppet do |puppet|
+        puppet.manifests_path = "manifests"
+        puppet.manifest_file = "ubuntu.pp"
+        puppet.module_path = "modules"
+      end
+
+      m.vm.network "private_network", ip: "192.168.10.21"
+      m.vm.network :forwarded_port, host: 8080, guest: 80
+      m.vm.network :forwarded_port, host: 4443, guest: 443
+    end
+end
