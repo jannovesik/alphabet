@@ -1,4 +1,30 @@
+.page-container
+  display: table
+  vertical-align: middle
+  height: 100%
+
+  .page-center
+    display: table-cell
+    vertical-align: middle
+    text-align: center
+
+.char-container
+  margin-bottom: 5%
+
 .char
+  display: inline-block
   width: 100px
   height: 100px
-  background-color: #0070a3
+  border: 1px solid #ccc
+  margin-right: 1%
+
+  &:last-child
+    margin-right: 0
+
+#suggestions
+  .char
+    background-color: #0070a3
+
+#answer
+  .char
+
