@@ -1,9 +1,12 @@
 <html lang="et">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,maximum-scale=1.0">
+    <link rel="stylesheet"
+          href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/style.css">
 
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
@@ -15,13 +18,46 @@
 </head>
 <body>
 <div class="container page-container">
-    <div class="template char-template">
-        <li class="char">${char}</li>
-    </div>
-
     <div class="page-center">
-        <ul id="suggestions" class="char-container"></ul>
-        <ul id="answers" class="char-container"></ul>
+        <div id="words-game" class="game-container">
+            <div class="template char-template">
+                <li class="char">${char}</li>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="input-group input-group-lg">
+                                <input type="text"
+                                       name="word"
+                                       class="form-control"
+                                       placeholder="Trüki sõna">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-success"
+                                            name="start"
+                                            type="button">
+                                        Näita
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <ul class="suggestions char-container"></ul>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <ul class="answers char-container"></ul>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>

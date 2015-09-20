@@ -1,31 +1,61 @@
 $(document).ready(function () {
-    var game = {
-        init: function(word) {
-            this.$suggestions = $('#suggestions');
-            this.$answers = $('#answers');
-            this.$suggestions.html('');
-            this.$answers.html('');
-
-            var data = [];
-            $(word).each(function (i, char) {
-                if (char != '#') {
-                    data.push({'char': char});
-                }
-            });
-            $('.char-template').tmpl(data).appendTo('#suggestions');
+    var Games = {
+        init: function () {
+            $('.game-container').fadeOut();
+            var hash = window.location.hash.replace('#', '');
+            if (this[hash]) {
+                this[hash].init();
+                $('#' + hash + '-game').fadeIn();
+            }
         }
     };
 
-    var word = window.location.hash.split('');
-    game.init(word);
+    Games.words = {
+        $suggestions: $('#words-game .suggestions'),
+        $answers: $('#words-game .answers'),
+        $startBtn: $('#words-game button[name="start"]'),
+        $wordText: $('#words-game input[name="word"]'),
+        currentWord: 'Tere',
 
-    $('#suggestions, #answers').sortable({
-        connectWith: '.char-container',
-        placeholder: 'placeholder'
+        init: function () {
+            this.updateUI();
+            this.bindEvents();
+        },
+
+        bindEvents: function () {
+            $('#words-game .suggestions, #words-game .answers').sortable({
+                connectWith: '#words-game .char-container',
+                placeholder: 'placeholder'
+            });
+
+            this.$startBtn.click($.proxy(function () {
+                this.currentWord = this.$wordText.val();
+                this.updateUI();
+                this.$wordText.val('');
+            }, this));
+        },
+
+        updateUI: function () {
+            this.$suggestions.html('');
+            this.$answers.html('');
+            var chars = this.currentWord.split('');
+
+            // Shuffle characters in word
+            chars = chars.sort(function () {
+                return 0.5 - Math.random()
+            });
+
+            var $template = $('.char-template')
+            $(chars).each($.proxy(function (i, char) {
+                $template.tmpl({'char': char}).hide().appendTo(
+                    this.$suggestions).delay(i * 500).fadeIn();
+            }, this));
+        }
+    };
+
+    $(window).on('hashchange', function () {
+        Games.init();
     });
 
-    $(window).on('hashchange', function() {
-        var word = window.location.hash.split('');
-        game.init(word);
-    });
+    Games.init();
 });
