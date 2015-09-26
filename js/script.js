@@ -13,7 +13,9 @@ $(document).ready(function () {
     Games.words = {
         $suggestions: $('#words-game .suggestions'),
         $answers: $('#words-game .answers'),
+        $winnings: $('#words-game .winnings .coins'),
         $startBtn: $('#words-game button[name="start"]'),
+        $winBtn: $('#words-game button[name="win"]'),
         $wordText: $('#words-game input[name="word"]'),
         currentWord: 'Tere',
 
@@ -45,11 +47,23 @@ $(document).ready(function () {
                 return 0.5 - Math.random()
             });
 
-            var $template = $('.char-template')
+            var $template = $('.char-template');
             $(chars).each($.proxy(function (i, char) {
                 $template.tmpl({'char': char}).hide().appendTo(
                     this.$suggestions).delay(i * 500).fadeIn();
             }, this));
+
+            this.$winBtn.click($.proxy(function () {
+                this.addWin();
+            }, this));
+        },
+
+        addWin: function () {
+            var win = $('<div>');
+            win.addClass('coin').hide();
+            this.$winnings.append(win).fadeIn();
+            win.html($('.winnings .coin').length);
+            win.fadeIn();
         }
     };
 
