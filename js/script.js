@@ -35,6 +35,14 @@ $(document).ready(function () {
                 this.updateUI();
                 this.$wordText.val('');
             }, this));
+
+            this.$winBtn.click($.proxy(function () {
+                this.addWin();
+            }, this));
+
+            this.$winnings.click($.proxy(function() {
+                this.removeWin();
+            }, this));
         },
 
         updateUI: function () {
@@ -52,10 +60,6 @@ $(document).ready(function () {
                 $template.tmpl({'char': char}).hide().appendTo(
                     this.$suggestions).delay(i * 500).fadeIn();
             }, this));
-
-            this.$winBtn.click($.proxy(function () {
-                this.addWin();
-            }, this));
         },
 
         addWin: function () {
@@ -64,6 +68,10 @@ $(document).ready(function () {
             this.$winnings.append(win).fadeIn();
             win.html($('.winnings .coin').length);
             win.fadeIn();
+        },
+
+        removeWin: function() {
+            $('.winnings .coin').last().remove();
         }
     };
 
